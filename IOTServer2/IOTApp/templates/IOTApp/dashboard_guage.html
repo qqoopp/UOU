@@ -1,0 +1,49 @@
+{% extends "IoTApp/base.html" %}
+
+{% block content %}
+  <div id="chart_div"></div>
+  <script>
+      var timeout = setTimeout("location.reload(true);",10000); //refresh every 10sec
+      
+      function resetTimeout() {
+        clearTimeout(timeout);
+      }
+  </script>
+  <script>
+google.charts.load('current', {'packages':['gauge']});
+google.charts.setOnLoadCallback(drawChart);
+
+var temp
+var humi
+var rowdata
+
+"{% for sensord in sensordata %}"
+    rowdata = ""
+    rowdata = JSON.parse("{{sensord.Value}}".replace(/&quot;/g,'"'))
+    temp = rowdata.Temperature
+    humi = rowdata.Humidity
+"{% endfor %}"
+
+function drawChart() {
+
+  var data = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['temp', temp],
+    ['humi', humi]
+  ]);
+
+  var options = {
+    width: 400, height: 120,
+    redFrom: 30, redTo: 100,
+    yellowFrom:25, yellowTo: 30,
+    minorTicks: 5
+  };
+
+  var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+  chart.draw(data, options);
+
+}
+</script>
+
+{% endblock %}

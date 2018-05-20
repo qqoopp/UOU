@@ -1,0 +1,42 @@
+{% extends "IoTApp/base.html" %}
+
+{% block content %}
+
+
+<html>
+<head>
+<style type="text/css">
+
+#foo td { background-color:#FFDDDD; padding:10px; border:1px solid #ACB4F2; }
+
+</style>
+</head>
+
+
+<body>
+
+<table height="100%" width="100%" id="foo" style="border-collapse:collapse">
+    <tr height="400">
+        <td width="30%"><img src="/static/화면1.jpg"  height=100%" align="left" width="100%"></td> 
+        <td width="30%"><img src="/static/화면2.jpg"  height="100%" align="left" width="100%"></td>
+        <td rowspan="2" width="20%">
+        <div class="frame">
+        <iframe id="current_temp"  src="current_temp" style="border:none;" height="100%" width="100%"  align="left" ></iframe>
+        </div>
+        </td> 
+        <td width="20%"><img src="/static/인원분포.jpg"  height="400" align="left" width="100%"></td>
+    </tr>
+    <tr height="400">
+        <td><img src="/static/화면3.jpg"  height="100%" align="left" width="100%"></td>
+        <td><img src="/static/화면4.jpg"  height="100%" align="left" width="100%"></td>
+        <td><img src="/static/미세먼지.jpg"  height="100%" align="left" width="100%"></td>
+        <td><img src="/static/버튼.jpg"  height="100%" align="left" width="100%"></td>
+    </tr>
+ 
+</table>
+
+</body>
+</html>
+
+
+{% endblock %}

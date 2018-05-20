@@ -1,0 +1,26 @@
+{% extends "IoTApp/base.html" %}
+
+{% block content %}
+
+<div>
+<div class="frame">
+    <iframe id="dashboard_dht"  src="dashboard_dht" 
+    style="border:none;" height="50%" width="30%" align="left" ></iframe>
+</div>
+
+<div class="frame">
+    <iframe id="dashboard_mpu"  src="dashboard_mpu" 
+    style="border:none;" height="50%" width="30%" align="left" ></iframe>
+</div>
+
+<div class="frame">
+    <iframe id="dashboard_sound"  src="dashboard_sound" 
+    style="border:none;" height="50%" width="30%"  align="left" ></iframe>
+</div>
+
+<div>
+    <img src="/static/fire.jpg" widgh="30%" align="left">
+</div>
+</div>
+
+{% endblock %}

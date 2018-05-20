@@ -1,0 +1,77 @@
+{% extends "IoTApp/base.html" %}
+
+{% block content %}
+  <div id="chart_div"></div>
+
+
+  <script>
+      var timeout = setTimeout("location.reload(true);",10000); //refresh every 10sec
+      
+      function resetTimeout() {
+        clearTimeout(timeout);
+      }
+  </script>
+
+  <script>
+  google.charts.load('current', {'packages':['line']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+  var data = new google.visualization.DataTable();
+  data.addColumn('number', 'HMS');
+  data.addColumn('number', 'GX');
+  data.addColumn('number', 'GY');
+  data.addColumn('number', 'GZ');
+  data.addColumn('number', 'AX');
+  data.addColumn('number', 'AY');
+  data.addColumn('number', 'AZ');
+
+  var rtnarr = [[]]
+  i = 0
+
+  "{% for sensord in sensordata %}"
+      rowdata = ""
+      rowdata = JSON.parse("{{sensord.Value}}".replace(/&quot;/g,'"'))
+      //console.log(ddd.data.sensor)
+      if (rowdata.data.sensor=="MPU"){
+          c = {'time':rowdata.measuredt.substring(8,18)*1000,
+                  'gx':rowdata.data.gyx*Math.random(),'gy':rowdata.data.gyy*Math.random(),'gz':rowdata.data.gyz*Math.random(),
+                  'ax':rowdata.data.acx*Math.random(),'ay':rowdata.data.acy*Math.random(),'az':rowdata.data.acz*Math.random()            
+          }
+          var arr = []
+          for (elem in c) {
+              arr.push(c[elem]);
+          }
+
+          rtnarr[i] = arr
+          i += 1
+      }
+
+  "{% endfor %}"
+
+
+  data.addRows(
+      rtnarr
+    //[1300,  Math.random()*1000, Math.random()*1000, Math.random()*1000],
+  );
+
+
+  var options = {
+    chart: {
+      title: 'Vibration Analysis',
+      subtitle: 'Gyro & Acceleration'
+    },
+    width: screen.width - 500,
+    height: screen.height - 500,
+  };
+
+  var formatter = new google.visualization.DateFormat({formatType: 'none'});
+  formatter.format(data, 1);
+
+  var chart = new google.charts.Line(document.getElementById('chart_div'));
+
+  chart.draw(data, google.charts.Line.convertOptions(options));
+  }
+  </script>
+{% endblock %}

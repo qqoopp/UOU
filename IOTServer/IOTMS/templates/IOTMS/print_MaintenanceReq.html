@@ -1,0 +1,91 @@
+{% extends 'IOTMS/base_print.html' %}
+{% block content %}
+{% load humanize %}
+
+<style>
+    .invoice-title h2, .invoice-title h3 {
+    display: inline-block;
+}
+.modal-dialog.modal-fullsize { width: 100%; height: 100%; margin: 0; padding: 0; }
+.table > tbody > tr > .no-line {
+    border-top: none;
+}
+.table > thead > tr > .no-line {
+    border-bottom: none;
+}
+.table > tbody > tr > .thick-line {
+    border-top: 2px solid;
+}
+</style>
+
+<script>
+
+    function PrintLoad(){
+        $(".btnmodal").click()
+    }
+    function goBack() {
+        window.history.back();
+    }
+
+    function Print(){
+        var DocumentContainer = document.getElementById('divtoprint');
+        var WindowObject = window.open("", "PrintWindow",
+        "width=10,height=10,top=10,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes");
+        WindowObject.document.writeln(DocumentContainer.innerHTML);
+        WindowObject.print();
+    }
+</script>
+
+<div class="container">
+
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btnmodal" data-toggle="modal" data-target="#myModal">
+    Print
+  </button>
+
+  <body onload="PrintLoad()"></body>
+
+  {% for master in masters %}
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">장비 태그  {{filename}}</h4>
+                <button type="button" class="close" data-dismiss="modal" onclick="goBack()">&times;</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="goBack()">Close</button>
+                <button type="button" class="btn btn-default" onclick="Print()">Print</button>
+            </div>
+
+            
+            <!-- Modal body -->
+            <div class="modal-body" id="divtoprint">
+                요청번호 : {{master.ServiceReqNo}} <br>
+                입고일 : {{master.InYMD}} <br>
+                요청자 : {{master.ReqEmpName}}<br>
+                입고자 : {{master.InEmpSeq}}<br>
+                발견일 : {{master.FindYM}}<br>
+                고장위치 : {{master.ErrorArea}}<br>
+                보관위치 : {{master.WHLocation}}<br>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+    
+  {% endfor %}
+  
+</div>
+
+</body>
+</html>
+
+{% endblock %}

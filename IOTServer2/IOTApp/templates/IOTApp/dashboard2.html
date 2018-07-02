@@ -1,42 +1,64 @@
 {% extends "IoTApp/base.html" %}
 
 {% block content %}
-
-
-<html>
-<head>
 <style type="text/css">
-
-#foo td { background-color:#FFDDDD; padding:10px; border:1px solid #ACB4F2; }
-
+    table {
+        border:none;
+    }
+    tr {
+        height:200;
+    }
+    td {  
+        padding:1px; 
+    }
+    
+    img {  
+        border:0;
+        padding:0px; 
+        height:200;
+        width:100%; 
+    }
+    iframe {  
+        border:none; 
+        width:100%;    
+        height:200;
+    }
 </style>
-</head>
+<script>
+    function onload(){
+        var w = window.innerWidth;
+        var h = window.innerHeight; 
+        // var r = document.getElementById("tb").rows
+        // r[0].height="300";
+        // r[1].height="300";
+        // r[2].height="300";
+        // // alert(h)
+    }
+</script>
+<body onload="onload()"></body>
 
-
-<body>
-
-<table height="100%" width="100%" id="foo" style="border-collapse:collapse">
-    <tr height="400">
-        <td width="30%"><img src="/static/화면1.jpg"  height=100%" align="left" width="100%"></td> 
-        <td width="30%"><img src="/static/화면2.jpg"  height="100%" align="left" width="100%"></td>
-        <td rowspan="2" width="20%">
-        <div class="frame">
-        <iframe id="current_temp"  src="current_temp" style="border:none;" height="100%" width="100%"  align="left" ></iframe>
-        </div>
-        </td> 
-        <td width="20%"><img src="/static/인원분포.jpg"  height="400" align="left" width="100%"></td>
+<br><br><br>
+<table id="tb">
+    <tr>
+        <td width="15%"><img src="/static/images/화면1.jpg"></td> 
+        <td width="15%"><img src="/static/images/화면2.jpg"></td>
+        <td width="20%"><iframe id="chart" src="chart_org" scrolling="no"></iframe></td>
+        <td width="20%"><iframe id="chart" src="chart_sankey" scrolling="no"></iframe></td>
+        <td width="20%"><iframe id="chart" src="chart_guage" scrolling="no"></iframe></td>
     </tr>
-    <tr height="400">
-        <td><img src="/static/화면3.jpg"  height="100%" align="left" width="100%"></td>
-        <td><img src="/static/화면4.jpg"  height="100%" align="left" width="100%"></td>
-        <td><img src="/static/미세먼지.jpg"  height="100%" align="left" width="100%"></td>
-        <td><img src="/static/버튼.jpg"  height="100%" align="left" width="100%"></td>
+    <tr>
+        <td><img src="/static/images/화면3.jpg"></td>
+        <td><img src="/static/images/화면4.jpg"></td>
+        <td><iframe id="chart" src="chart_scatter/dht" scrolling="no"></iframe></td>
+        <td><iframe id="chart" src="chart_line/fire" scrolling="no"></iframe></td>
+        <td><iframe id="chart" src="chart_line/fire" scrolling="no"></iframe></td>
     </tr>
- 
+    <tr>
+        <td><iframe id="chart" src="chart_table/dht" scrolling="no"></iframe></td>
+        <td><iframe id="chart" src="chart_line/light" scrolling="no"></iframe></td>
+        <td><iframe id="chart" src="chart_line/dht" scrolling="no"></iframe></td>
+        <td><iframe id="chart" src="chart_line/dht" scrolling="no"></iframe></td>
+        <td><iframe id="chart" src="chart_map/dht" scrolling="no"></iframe></td>
+    </tr>    
 </table>
-
-</body>
-</html>
-
-
 {% endblock %}

@@ -5,13 +5,16 @@ from django.contrib import admin
 
 urlpatterns = [
     path(r'', admin.site.urls),
-    url(r'^Postjson$', Postjson,name='Postjson'),
-    url(r'^Transdata$', Transdata,name='Transdata'),
-    url(r'^dashboard$', dashboard,name='dashboard'),
-    url(r'^dashboard2$', dashboard2,name='dashboard2'),
-    url(r'^dashboard_fire$', dashboard_fire,name='dashboard_fire'),
-    url(r'^dashboard_dht$', dashboard_dht,name='dashboard_dht'),
-    url(r'^dashboard_light$', dashboard_light,name='dashboard_light'),
-    url(r'^dashboard_guage$', dashboard_guage,name='dashboard_guage')
+    url(r'^Postjson$', view=Postjson),
+    url(r'^Transdata$', view=Transdata),
+    url(r'^dashboard$', view=dashboard),
+    url(r'^dashboard2$', view=dashboard2),
+    url(r'^chart_guage$', view=chart_guage),
+    url(r'^chart_org$', view=chart_org),
+    url(r'^chart_scatter/(?P<qsensor>[A-Za-z0-9]+)', view=chart_scatter),
+    url(r'^chart_sankey$', view=chart_sankey),
+    url(r'^chart_line/(?P<qsensor>[A-Za-z0-9]+)', view=chart_line),
+    url(r'^chart_table/(?P<qsensor>[A-Za-z0-9]+)', view=chart_table),
+    url(r'^chart_map/(?P<qsensor>[A-Za-z0-9]+)', view=chart_map),    
 ]
 

@@ -58,18 +58,19 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal" onclick="goBack()">Close</button>
                 <button type="button" class="btn btn-default" onclick="Print()">Print</button>
             </div>
-
             
             <!-- Modal body -->
             <div class="modal-body" id="divtoprint">
-                <img src="/static/{{filename}}" ><br>
-                요청번호 : {{master.ServiceReqNo}} <br>
-                입고일 : {{master.InYMD}} <br>
-                요청자 : {{master.ReqEmpName}}<br>
-                입고자 : {{master.InEmpSeq}}<br>
-                발견일 : {{master.FindYM}}<br>
-                고장위치 : {{master.ErrorArea}}<br>
-                보관위치 : {{master.WHLocation}}<br>
+                <table border="1" width = "50%" align="center">
+                    <tr ><td colspan="2" align="middle"><img src={{filename}}></td></tr>
+                    <tr><td>요청번호 :</td><td>{{master.ServiceReqNo}}</td></tr>
+                    <tr><td>입고일 :</td><td> {{master.InYMD}}</td></tr>
+                    <tr><td>요청자 :</td><td>{{master.ReqEmpName}}</td></tr>
+                    <tr><td>입고자 :</td><td>{{master.InEmpSeq}}</td></tr>
+                    <tr><td>발견일 :</td><td>{{master.FindYM}}</td></tr>
+                    <tr><td>고장위치 :</td><td> {{master.ErrorArea}}</td></tr>
+                    <tr><td>보관위치 :</td><td> {{master.WHLocation}}</td></tr>
+                </table>
             </div>
             
             <!-- Modal footer -->

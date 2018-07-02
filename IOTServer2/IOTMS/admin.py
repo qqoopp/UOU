@@ -2,6 +2,7 @@ from django.contrib import admin
 from IOTMS.models import *
 from django.shortcuts import render
 import barcode
+#from barcode.writer import ImageWriter
 
 # Register your models here.
 
@@ -20,10 +21,11 @@ def Print_ServiceReq(modeladmin, request, queryset):
         reqno = master.ServiceReqNo
 
     EAN = barcode.get_barcode_class('ean13')
-    reqno = '12345678'
     ean = EAN(reqno)
+    #ean = EAN(reqno , writer=ImageWriter())
+
     ean.save('./IOTMS/static/'+ reqno)
-    filename = reqno + '.svg'
+    filename = '/static/' + reqno + '.svg'
 
     return render(request, 'IOTMS/print_MaintenanceReq.html',{'masters':masters, 'filename':filename})
 

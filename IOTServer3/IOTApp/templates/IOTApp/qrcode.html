@@ -1,0 +1,11 @@
+{% extends "IOTApp/base.html" %}
+{% block content %}
+{% load qr_code %}
+
+<br><br><br><br><br><br><br><br>
+
+{% qr_from_text "hihi" size="T" %}
+{% qr_from_text "hello" size="T" %}
+
+{% endblock %}
+

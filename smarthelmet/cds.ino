@@ -12,6 +12,6 @@ void loop_cds(){
     digitalWrite(bigled, LOW);
     Serial.println("LED OFF ");
   }  
-  delay(200);
+
 }
 

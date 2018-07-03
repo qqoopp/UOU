@@ -20,7 +20,7 @@ def Print_ServiceReq(modeladmin, request, queryset):
     for master in masters:        
         reqno = master.ServiceReqNo
 
-    qrurl = request.META['HTTP_HOST'] + request.path + reqno
+    qrurl = request.META['HTTP_HOST'] + "/ServiceReqInfo/" + reqno #request.path + reqno
     return render(request, 'IOTMS/print_MaintenanceReq.html',{'masters':masters, 'qrurl':qrurl})
 
 #============================================================

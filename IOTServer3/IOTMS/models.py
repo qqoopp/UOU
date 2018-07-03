@@ -3,7 +3,7 @@ from IOTSite import dictionary as dic
 from django.db.models import Max
 
 #=====================================
-# common funtins
+# common functions
 #=====================================
 def genSeviceReqNo(self):
 
